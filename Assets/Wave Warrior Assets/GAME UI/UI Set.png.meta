@@ -129,7 +129,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI Set_2
+      name: Player Header
       rect:
         serializedVersion: 2
         x: 96
@@ -137,7 +137,7 @@ TextureImporter:
         width: 336
         height: 92
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -150,7 +150,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI Set_3
+      name: Upgrade Header
       rect:
         serializedVersion: 2
         x: 445
@@ -158,7 +158,7 @@ TextureImporter:
         width: 476
         height: 162
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -171,7 +171,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI Set_5
+      name: Money Background
       rect:
         serializedVersion: 2
         x: 962
@@ -179,7 +179,7 @@ TextureImporter:
         width: 286
         height: 145
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -200,7 +200,7 @@ TextureImporter:
         width: 1173
         height: 677
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -213,7 +213,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI Set_15
+      name: HP Upgrade
       rect:
         serializedVersion: 2
         x: 122
@@ -221,7 +221,7 @@ TextureImporter:
         width: 315
         height: 440
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -234,7 +234,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI Set_18
+      name: Damage Upgrade
       rect:
         serializedVersion: 2
         x: 500
@@ -242,7 +242,7 @@ TextureImporter:
         width: 315
         height: 440
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -255,7 +255,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI Set_20
+      name: Fire Rate Upgrade
       rect:
         serializedVersion: 2
         x: 872
@@ -263,7 +263,7 @@ TextureImporter:
         width: 315
         height: 440
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -276,7 +276,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI Set_37
+      name: Upgrade Button
       rect:
         serializedVersion: 2
         x: 693
@@ -284,7 +284,7 @@ TextureImporter:
         width: 268
         height: 133
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -297,7 +297,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI Set_42
+      name: Wave Slider Fill
       rect:
         serializedVersion: 2
         x: 98
@@ -305,7 +305,7 @@ TextureImporter:
         width: 536
         height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -318,7 +318,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI Set_44
+      name: Wave Slider
       rect:
         serializedVersion: 2
         x: 62
@@ -326,7 +326,7 @@ TextureImporter:
         width: 586
         height: 170
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -355,19 +355,19 @@ TextureImporter:
       UI Set_4: -174640202
       UI Set_7: -60084551
       UI Set_1: -1009732113
-      UI Set_2: -2113157604
       UI Set_39: 2091589992
       UI Set_49: -1383104678
-      UI Set_5: 519298900
       UI Set_27: 1367161290
       UI Set_48: -1968546246
+      Wave Slider Fill: 1976027562
       UI Set_22: -1546328695
       UI Set_26: -224507739
+      HP Upgrade: -2140918956
       UI Set_10: 646102450
-      UI Set_37: 322460251
+      Fire Rate Upgrade: -426702047
       UI Set_29: -418010259
       UI Set_33: 1473169079
-      UI Set_42: 1976027562
+      Wave Slider: 1952658389
       UI Set_45: -1014636323
       UI Set_14: -939465930
       UI Set_0: 379328336
@@ -377,27 +377,27 @@ TextureImporter:
       UI Set_11: 1534521595
       UI Set_16: -1728841828
       UI Set_23: -545751769
-      UI Set_15: -2140918956
       UI Set_24: 995030085
-      UI Set_19: 769487140
       UI Set_34: 1948572424
+      UI Set_19: 769487140
       UI Set_40: -937424454
       UI Set_38: -72301620
       UI Set_13: -525636055
       UI Set_6: -1152527798
-      UI Set_44: 1952658389
       UI Set_21: 1073181636
+      Upgrade Button: 322460251
       UI Set_9: -999777423
-      UI Set_20: -426702047
       UI Set_36: -658149017
       UI Set_28: 1000315873
+      Upgrade Header: -198961979
       UI Set_47: -33618621
+      Money Background: 519298900
+      Player Header: -2113157604
       UI Set_30: -1428109411
+      Damage Upgrade: 1660593140
       UI Set_17: 1223618640
-      UI Set_18: 1660593140
       UI Set_35: 869949851
       UI Set_12: 897751804
-      UI Set_3: -198961979
       UI Set_41: 1053552393
   spritePackingTag: 
   pSDRemoveMatte: 0
