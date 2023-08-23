@@ -97,6 +97,8 @@ MonoBehaviour:
   snapY: 0
   background: {fileID: 8170153792821263258}
   handle: {fileID: 8170153791961219456}
+  _playerMovementData: {fileID: 11400000, guid: fa1a4bcc4b31054448c7a2f5d22054c4,
+    type: 2}
 --- !u!1 &8170153791961219457
 GameObject:
   m_ObjectHideFlags: 0

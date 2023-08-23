@@ -790,6 +790,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 365149913}
     m_Modifications:
+    - target: {fileID: 8170153791668043265, guid: 0d230cc8be529a542a08cb878ab14b18,
+        type: 3}
+      propertyPath: _playerMovementData
+      value: 
+      objectReference: {fileID: 11400000, guid: fa1a4bcc4b31054448c7a2f5d22054c4,
+        type: 2}
     - target: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
       propertyPath: m_Pivot.x
@@ -908,6 +914,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2031271321}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2108299656 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8170153791668043265, guid: 0d230cc8be529a542a08cb878ab14b18,
+    type: 3}
+  m_PrefabInstance: {fileID: 2031271321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3886941265223720704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -915,6 +933,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3573097478061663574, guid: e612341783c83bd42a3c5b7a57223bac,
+        type: 3}
+      propertyPath: <Joystick>k__BackingField
+      value: 
+      objectReference: {fileID: 2108299656}
     - target: {fileID: 3886941265626394761, guid: e612341783c83bd42a3c5b7a57223bac,
         type: 3}
       propertyPath: m_Name
@@ -973,6 +996,21 @@ PrefabInstance:
     - target: {fileID: 3886941265626394762, guid: e612341783c83bd42a3c5b7a57223bac,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4334970526387894931, guid: e612341783c83bd42a3c5b7a57223bac,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4334970526387894931, guid: e612341783c83bd42a3c5b7a57223bac,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4334970526387894931, guid: e612341783c83bd42a3c5b7a57223bac,
+        type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

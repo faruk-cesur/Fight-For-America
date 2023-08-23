@@ -1,23 +1,24 @@
 using System;
 using System.Collections;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public float StartingHealth { get; set; }
-    public float SliderSpeed = 0.5f;
-    [field: SerializeField] private Slider HealthSlider { get; set; }
-    [field: SerializeField] private Gradient GradientHealthColor { get; set; }
-    [field: SerializeField] private Image Fill { get; set; }
-    [field: SerializeField] private Image HeartImage { get; set; }
+    [SerializeField, BoxGroup("HEALTH SETTINGS")] private float _startingHealth;
+    [SerializeField, BoxGroup("HEALTH SETTINGS")] private float _sliderSpeed = 0.5f;
+    
+    [SerializeField, BoxGroup("HEALTH SETUP")] private Slider _healthSlider;
+    [SerializeField, BoxGroup("HEALTH SETUP")] private Gradient _gradientHealthColor;
+    [SerializeField, BoxGroup("HEALTH SETUP")] private Image _fill;
+    
     public UnityAction OnDeath;
-
     public bool IsDead { get; set; }
     private float _currentHealth;
-
+    
     public float CurrentHealth
     {
         get => _currentHealth;
@@ -37,6 +38,14 @@ public class Health : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Damage(10);
+        }
+    }
+
     private bool IsHealthLowerThanZero()
     {
         return _currentHealth <= 0;
@@ -49,26 +58,26 @@ public class Health : MonoBehaviour
 
     private void SetStartingHealth()
     {
-        CurrentHealth = StartingHealth;
-        HealthSlider.maxValue = StartingHealth;
-        HealthSlider.minValue = 0;
+        CurrentHealth = _startingHealth;
+        _healthSlider.maxValue = _startingHealth;
+        _healthSlider.minValue = 0;
         SetHealthSliderValue();
     }
 
     private void SetHealthSliderValue()
     {
-        if (HealthSlider.value <= 0)
+        if (_healthSlider.value <= 0)
             return;
 
-        HealthSlider.DOValue(_currentHealth, SliderSpeed);
+        _healthSlider.DOValue(_currentHealth, _sliderSpeed);
         SetGradientHealthColor();
     }
 
     private void SetGradientHealthColor()
     {
-        var targetHealthSliderValue = (HealthSlider.maxValue - CurrentHealth);
-        var normalizedSliderValue = Mathf.InverseLerp(HealthSlider.maxValue, 0, targetHealthSliderValue);
-        Fill.DOColor(GradientHealthColor.Evaluate(normalizedSliderValue), SliderSpeed);
+        var targetHealthSliderValue = (_healthSlider.maxValue - CurrentHealth);
+        var normalizedSliderValue = Mathf.InverseLerp(_healthSlider.maxValue, 0, targetHealthSliderValue);
+        _fill.DOColor(_gradientHealthColor.Evaluate(normalizedSliderValue), _sliderSpeed);
     }
 
     public void Damage(float damageAmount)
@@ -85,9 +94,9 @@ public class Health : MonoBehaviour
             return;
 
         CurrentHealth += healAmount;
-        if (CurrentHealth > StartingHealth)
+        if (CurrentHealth > _startingHealth)
         {
-            CurrentHealth = StartingHealth;
+            CurrentHealth = _startingHealth;
         }
     }
 
