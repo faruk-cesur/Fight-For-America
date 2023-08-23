@@ -876,7 +876,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &528932937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3154,13 +3154,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597ca60541a2ece40a209ea845838793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SliderImage>k__BackingField: {fileID: 0}
+  <SettingsUI>k__BackingField: {fileID: 0}
   <SoundOnButton>k__BackingField: {fileID: 0}
   <SoundOffButton>k__BackingField: {fileID: 0}
   <VibrationOnButton>k__BackingField: {fileID: 0}
   <VibrationOffButton>k__BackingField: {fileID: 0}
-  <SettingsUI>k__BackingField: {fileID: 0}
-  <SettingsButton>k__BackingField: {fileID: 0}
 --- !u!1 &2008509529
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,18 +1,19 @@
+using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class SettingsManager : Singleton<SettingsManager>
 {
     #region Variables
 
-    [field: SerializeField] public Image SliderImage { get; set; }
-    [field: SerializeField] public GameObject SoundOnButton { get; set; }
-    [field: SerializeField] public GameObject SoundOffButton { get; set; }
-    [field: SerializeField] public GameObject VibrationOnButton { get; set; }
-    [field: SerializeField] public GameObject VibrationOffButton { get; set; }
-    [field: SerializeField] public GameObject SettingsUI { get; set; }
-    [field: SerializeField] public Button SettingsButton { get; set; }
-
+    [field: SerializeField] public CanvasGroup SettingsUI { get; set; }
+    [field: SerializeField, BoxGroup("Sound and Vibration")] public GameObject SoundOnButton { get; set; }
+    [field: SerializeField, BoxGroup("Sound and Vibration")] public GameObject SoundOffButton { get; set; }
+    [field: SerializeField, BoxGroup("Sound and Vibration")] public GameObject VibrationOnButton { get; set; }
+    [field: SerializeField, BoxGroup("Sound and Vibration")] public GameObject VibrationOffButton { get; set; }
+    public UnityAction OnSaveSettings;
     public bool IsSoundActivated { get; private set; }
     public bool IsVibrationActivated { get; private set; }
     private bool IsSettingsOpened { get; set; }
@@ -22,7 +23,7 @@ public class SettingsManager : Singleton<SettingsManager>
     #region Get Starting Data
 
     private void Start() => GetStartingData();
-    
+
     private void GetStartingData()
     {
         if (!PlayerPrefs.HasKey("SoundSettings"))
@@ -62,13 +63,23 @@ public class SettingsManager : Singleton<SettingsManager>
 
     #region Settings
 
+    public void OpenSettingsUI()
+    {
+        UIManager.Instance.FadeCanvasGroup(SettingsUI, 0.5f, true);
+    }
+
+    public void CloseSettingsUI()
+    {
+        UIManager.Instance.FadeCanvasGroup(SettingsUI, 0.5f, false);
+    }
+
     public void EnableSound(bool playAudio)
     {
         SoundOnButton.SetActive(true);
         SoundOffButton.SetActive(false);
         IsSoundActivated = true;
         PlayerPrefs.SetInt("SoundSettings", 1);
-        AudioManager.Instance.gameObject.SetActive(true);
+        AudioListener.pause = false;
     }
 
     public void DisableSound()
@@ -77,7 +88,7 @@ public class SettingsManager : Singleton<SettingsManager>
         SoundOffButton.SetActive(true);
         IsSoundActivated = false;
         PlayerPrefs.SetInt("SoundSettings", 0);
-        AudioManager.Instance.gameObject.SetActive(false);
+        AudioListener.pause = true;
     }
 
     public void EnableVibration(bool playAudio)
