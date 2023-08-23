@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 80a2025e6bc57ef40b16e3b2b6d8a438
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Heavitas
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 437364fd643fd704a8be11ddb41ae5f7, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
