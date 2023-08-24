@@ -10,15 +10,15 @@ public class Health : MonoBehaviour
 {
     [SerializeField, BoxGroup("HEALTH SETTINGS")] private float _startingHealth;
     [SerializeField, BoxGroup("HEALTH SETTINGS")] private float _sliderSpeed = 0.5f;
-    
+
     [SerializeField, BoxGroup("HEALTH SETUP")] private Slider _healthSlider;
     [SerializeField, BoxGroup("HEALTH SETUP")] private Gradient _gradientHealthColor;
     [SerializeField, BoxGroup("HEALTH SETUP")] private Image _fill;
-    
+
     public UnityAction OnDeath;
     public bool IsDead { get; set; }
     private float _currentHealth;
-    
+
     public float CurrentHealth
     {
         get => _currentHealth;
@@ -35,14 +35,6 @@ public class Health : MonoBehaviour
             {
                 Kill();
             }
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Damage(10);
         }
     }
 

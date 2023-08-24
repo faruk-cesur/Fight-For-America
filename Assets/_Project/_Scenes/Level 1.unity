@@ -933,11 +933,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3573097478061663574, guid: e612341783c83bd42a3c5b7a57223bac,
-        type: 3}
-      propertyPath: <Joystick>k__BackingField
-      value: 
-      objectReference: {fileID: 2108299656}
     - target: {fileID: 3886941265626394761, guid: e612341783c83bd42a3c5b7a57223bac,
         type: 3}
       propertyPath: m_Name
@@ -998,20 +993,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4334970526387894931, guid: e612341783c83bd42a3c5b7a57223bac,
+    - target: {fileID: 5559982565227651159, guid: e612341783c83bd42a3c5b7a57223bac,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4334970526387894931, guid: e612341783c83bd42a3c5b7a57223bac,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4334970526387894931, guid: e612341783c83bd42a3c5b7a57223bac,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: _joystick
+      value: 
+      objectReference: {fileID: 2108299656}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e612341783c83bd42a3c5b7a57223bac, type: 3}

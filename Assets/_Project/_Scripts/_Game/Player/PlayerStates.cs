@@ -48,10 +48,10 @@ public class PlayerStates : MonoBehaviour
                 StandingShootState?.Invoke();
                 break;
             case PlayerState.Death:
-                DeathState?.Invoke();
+                //DeathState?.Invoke();
                 break;
             case PlayerState.Victory:
-                VictoryState?.Invoke();
+                //VictoryState?.Invoke();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

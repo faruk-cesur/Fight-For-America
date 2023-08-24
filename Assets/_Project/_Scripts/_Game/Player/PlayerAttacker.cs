@@ -41,7 +41,7 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
 
     private void FixedUpdate()
     {
-        DecreaseCooldownBetweenAttacks();
+        DecreaseCurrentFireRate();
         FindTargetToChangeState();
     }
 
@@ -63,7 +63,7 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
         _playerController.PlayerVisual.localRotation = Quaternion.Slerp(_playerController.PlayerVisual.localRotation, Quaternion.LookRotation(new Vector3(difference.x, 0, difference.z)), Time.fixedDeltaTime * AttackerData.RotateAimSpeed);
     }
 
-    private void DecreaseCooldownBetweenAttacks()
+    private void DecreaseCurrentFireRate()
     {
         _currentFireRate -= Time.fixedDeltaTime;
     }
@@ -76,10 +76,11 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
 
     public void RunningShootState()
     {
+        _playerController.Move();
         _playerAnimator.RunningShootAnimation();
         LookAtTarget();
 
-        if (CooldownCompletedForNextAttack())
+        if (FireRateCompletedForNextAttack())
         {
             _currentFireRate = AttackerData.FireRate;
             Attack();
@@ -90,7 +91,7 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
     {
         LookAtTarget();
         
-        if (CooldownCompletedForNextAttack())
+        if (FireRateCompletedForNextAttack())
         {
             _currentFireRate = AttackerData.FireRate;
             Attack();
@@ -98,7 +99,7 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
         }
     }
     
-    private bool CooldownCompletedForNextAttack()
+    private bool FireRateCompletedForNextAttack()
     {
         return _currentFireRate <= 0;
     }

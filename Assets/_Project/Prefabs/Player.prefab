@@ -74,7 +74,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3886941265626394762}
   - component: {fileID: 827590644185287769}
-  - component: {fileID: 3573097478061663574}
   - component: {fileID: 5559982565227651159}
   - component: {fileID: 1911718096860528528}
   - component: {fileID: 618926871939356537}
@@ -121,19 +120,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &3573097478061663574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3886941265626394761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4f46dedb9302044ca596e58b3f3f439, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Joystick>k__BackingField: {fileID: 0}
 --- !u!114 &5559982565227651159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,10 +134,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MovementData>k__BackingField: {fileID: 11400000, guid: fa1a4bcc4b31054448c7a2f5d22054c4,
     type: 2}
-  _playerInput: {fileID: 3573097478061663574}
   _playerStates: {fileID: 1911718096860528528}
   _playerAnimator: {fileID: 618926871939356537}
   _playerAttacker: {fileID: 7596292511102112990}
+  _joystick: {fileID: 0}
   _health: {fileID: 2629833388955044365}
   _rigidbody: {fileID: 827590644185287769}
   PlayerVisual: {fileID: 3886941266791897039}
