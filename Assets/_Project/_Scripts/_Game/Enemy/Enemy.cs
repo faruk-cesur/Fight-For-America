@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
     [SerializeField, BoxGroup("Movement Setup")] private Animator _enemyAnimator;
 
     [SerializeField, BoxGroup("Death Setup")] private SkinnedMeshRenderer _enemyMeshRenderer;
+    [SerializeField, BoxGroup("Death Setup")] private ParticleSystem _deathParticle;
     [SerializeField, BoxGroup("Death Setup")] private List<GameObject> _moneyList;
 
     [SerializeField] private Transform _playerTransform;
@@ -40,11 +41,6 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            GetShot(10);
-        }
-
         if (IsEnemyDeadOrInteract)
             return;
 
@@ -72,6 +68,7 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
     {
         Stop();
         _enemyAnimator.SetTrigger(DeathAnimation);
+        _deathParticle.Play();
         DisableEnemyCollider();
         TurnEnemyColorBlack();
         DropMoneyFromEnemy();

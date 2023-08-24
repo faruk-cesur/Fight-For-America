@@ -1334,15 +1334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Enemy Stickman
       objectReference: {fileID: 0}
-    - target: {fileID: 8253012185546194026, guid: a73ec1c533fcee04ebf75912b4709a17,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8253012185546194038, guid: a73ec1c533fcee04ebf75912b4709a17,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8253012185546194038, guid: a73ec1c533fcee04ebf75912b4709a17,
         type: 3}
