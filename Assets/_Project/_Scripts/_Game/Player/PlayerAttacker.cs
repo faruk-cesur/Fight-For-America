@@ -15,6 +15,7 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
     [SerializeField] private Transform _bulletSpawnPosition;
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private ParticleSystem _shootParticle;
+    [SerializeField] private AudioClip _shootAudio;
     private float _currentFireRate = 0;
 
     public void Attack()
@@ -23,6 +24,7 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
         var closestTarget = _findClosestTarget.ClosestTarget;
 
         PlayShootParticle();
+        AudioManager.Instance.PlayAudio(_shootAudio,0.25f,0,false);
 
         if (spawnedBullet.TryGetComponent(out Bullet bullet))
         {
