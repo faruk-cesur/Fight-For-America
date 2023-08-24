@@ -4,8 +4,8 @@ public class Bullet : MonoBehaviour
 {
     public Transform TargetTransform { get; set; }
     public Enemy TargetEnemy { get; set; }
+    public float BulletDamage { get; set; }
     [SerializeField] private float _bulletSpeed;
-    [SerializeField] private ParticleSystem _bulletMuzzleParticle;
 
     private void Update()
     {
@@ -16,20 +16,13 @@ public class Bullet : MonoBehaviour
     {
         var myPosition = transform.position;
         transform.position = Vector3.MoveTowards(myPosition, TargetPositionOffsetY(), Time.deltaTime * _bulletSpeed);
+        transform.LookAt(TargetPositionOffsetY());
 
         if (IsBulletReachedTarget())
         {
-            TargetEnemy.EnemyHealth.IsDead = true;
-            TargetEnemy.gameObject.layer = 14;
-            InstantiateBulletMuzzleParticle();
+            TargetEnemy.GetShot(BulletDamage);
             Destroy(gameObject);
         }
-    }
-
-    private void InstantiateBulletMuzzleParticle()
-    {
-        var particle = Instantiate(_bulletMuzzleParticle, transform.position, Quaternion.identity);
-        Destroy(particle, 2f);
     }
 
     private Vector3 TargetPositionOffsetY()
