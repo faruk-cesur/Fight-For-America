@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6218c376d398b04438cb41407043f1e4, type: 3}
-  m_Name: EnemyMovementData
+  m_Name: LittleEnemyMovementData
   m_EditorClassIdentifier: 
-  <MovementSpeed>k__BackingField: 2
+  <MovementSpeed>k__BackingField: 5
