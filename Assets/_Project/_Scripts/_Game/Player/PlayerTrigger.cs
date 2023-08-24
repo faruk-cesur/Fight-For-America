@@ -2,16 +2,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerTrigger : MonoBehaviour
 {
     [SerializeField] private Health _health;
+    [SerializeField] private Slider _healthSlider;
+    private Coroutine _healthSliderCoroutine;
+
 
     private void Start()
     {
         StartCoroutine(HealPlayer());
+        DisableHealthSlider();
     }
 
+    private IEnumerator SetHealthSliderCoroutine()
+    {
+        _healthSlider.gameObject.SetActive(true);
+        yield return new WaitUntil(() => _health.IsHealthFull);
+        yield return new WaitForSeconds(1f);
+        _healthSlider.gameObject.SetActive(false);
+        _healthSliderCoroutine = null;
+    }
+    
     private IEnumerator HealPlayer()
     {
         while (!_health.IsDead)
@@ -27,6 +41,22 @@ public class PlayerTrigger : MonoBehaviour
         {
             enemy.Death();
             _health.Damage(enemy.ShootableHealth.CurrentHealth);
+            DisplayHealthSlider();
         }
+    }
+    
+    private void DisableHealthSlider()
+    {
+        _healthSlider.gameObject.SetActive(false);
+    }
+
+    private void DisplayHealthSlider()
+    {
+        if (_healthSliderCoroutine != null)
+        {
+            StopCoroutine(_healthSliderCoroutine);
+        }
+
+        _healthSliderCoroutine = StartCoroutine(SetHealthSliderCoroutine());
     }
 }

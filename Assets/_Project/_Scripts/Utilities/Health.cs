@@ -17,6 +17,7 @@ public class Health : MonoBehaviour
 
     public UnityAction OnDeath;
     public bool IsDead { get; set; }
+    public bool IsHealthFull => _currentHealth >= _startingHealth;
     private float _currentHealth;
 
     public float CurrentHealth
