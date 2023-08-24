@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4321202a40b43e0a54244bb85afa53e, type: 3}
   m_Name: PlayerAttackData
   m_EditorClassIdentifier: 
-  <Damage>k__BackingField: 0
-  <NumberOfBullets>k__BackingField: 0
-  <CooldownBetweenAttacks>k__BackingField: 0
-  <ReloadTime>k__BackingField: 0
-  <RotateAimSpeed>k__BackingField: 0
+  <Damage>k__BackingField: 10
+  <FireRate>k__BackingField: 1
+  <RotateAimSpeed>k__BackingField: 10

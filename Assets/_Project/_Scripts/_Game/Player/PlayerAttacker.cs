@@ -21,7 +21,7 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
     {
         var spawnedBullet = SpawnBullet();
         var closestTarget = _findClosestTarget.ClosestTarget;
-        
+
         PlayShootParticle();
 
         if (spawnedBullet.TryGetComponent(out Bullet bullet))
@@ -30,6 +30,7 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
             {
                 bullet.TargetTransform = closestTarget.transform;
                 bullet.TargetEnemy = enemy;
+                bullet.BulletDamage = AttackerData.Damage;
             }
         }
     }
@@ -39,7 +40,7 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
         _shootParticle.Play();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         DecreaseCurrentFireRate();
         FindTargetToChangeState();
@@ -59,13 +60,16 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
 
     private void LookAtTarget()
     {
+        if (!_findClosestTarget.ClosestTarget)
+            return;
+
         var difference = _findClosestTarget.ClosestTarget.transform.position - transform.position;
         _playerController.PlayerVisual.localRotation = Quaternion.Slerp(_playerController.PlayerVisual.localRotation, Quaternion.LookRotation(new Vector3(difference.x, 0, difference.z)), Time.fixedDeltaTime * AttackerData.RotateAimSpeed);
     }
 
     private void DecreaseCurrentFireRate()
     {
-        _currentFireRate -= Time.fixedDeltaTime;
+        _currentFireRate -= Time.deltaTime;
     }
 
     private Transform SpawnBullet()
@@ -89,16 +93,17 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
 
     public void StandingShootState()
     {
+        _playerController.Stop();
+        _playerAnimator.StandingShootAnimation();
         LookAtTarget();
-        
+
         if (FireRateCompletedForNextAttack())
         {
             _currentFireRate = AttackerData.FireRate;
             Attack();
-            _playerAnimator.StandingShootAnimation();
         }
     }
-    
+
     private bool FireRateCompletedForNextAttack()
     {
         return _currentFireRate <= 0;

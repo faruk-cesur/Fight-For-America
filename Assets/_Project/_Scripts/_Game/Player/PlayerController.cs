@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour, IMovable<PlayerMovementData>
 
     private void SetEventListeners()
     {
-        _playerStates.IdleState += Stop;
+        _playerStates.IdleState += IdleState;
         _playerStates.RunningState += RunningState;
         _playerStates.RunningShootState += _playerAttacker.RunningShootState;
         _playerStates.StandingShootState += _playerAttacker.StandingShootState;
@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour, IMovable<PlayerMovementData>
     public void Stop()
     {
         _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-        _playerAnimator.IdleAnimation();
     }
 
     public void Rotate()
@@ -54,11 +53,17 @@ public class PlayerController : MonoBehaviour, IMovable<PlayerMovementData>
         return _joystick.Direction.sqrMagnitude >= 0.1f * 0.1f;
     }
 
+    private void IdleState()
+    {
+        Stop();
+        _playerAnimator.IdleAnimation();
+    }
+
     private void RunningState()
     {
         if (MovementData.IsCharacterInteract)
         {
-            Stop();
+            IdleState();
             return;
         }
 
