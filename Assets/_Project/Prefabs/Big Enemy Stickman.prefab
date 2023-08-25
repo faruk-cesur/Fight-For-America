@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad1b2d8c247f9e4f84db051c1f385a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingHealth: 100
+  StartingHealth: 100
   _sliderSpeed: 0.5
   _healthSlider: {fileID: 5232089697578012665}
   _gradientHealthColor:

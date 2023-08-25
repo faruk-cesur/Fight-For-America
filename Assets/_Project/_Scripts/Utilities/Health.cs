@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField, BoxGroup("HEALTH SETTINGS")] private float _startingHealth;
+    [SerializeField, BoxGroup("HEALTH SETTINGS")] public float StartingHealth;
     [SerializeField, BoxGroup("HEALTH SETTINGS")] private float _sliderSpeed = 0.5f;
 
     [SerializeField, BoxGroup("HEALTH SETUP")] private Slider _healthSlider;
@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
 
     public UnityAction OnDeath;
     public bool IsDead { get; set; }
-    public bool IsHealthFull => _currentHealth >= _startingHealth;
+    public bool IsHealthFull => _currentHealth >= StartingHealth;
     private float _currentHealth;
 
     public float CurrentHealth
@@ -49,10 +49,10 @@ public class Health : MonoBehaviour
         SetStartingHealth();
     }
 
-    private void SetStartingHealth()
+    public void SetStartingHealth()
     {
-        CurrentHealth = _startingHealth;
-        _healthSlider.maxValue = _startingHealth;
+        CurrentHealth = StartingHealth;
+        _healthSlider.maxValue = StartingHealth;
         _healthSlider.minValue = 0;
         SetHealthSliderValue();
     }
@@ -87,9 +87,9 @@ public class Health : MonoBehaviour
             return;
 
         CurrentHealth += healAmount;
-        if (CurrentHealth > _startingHealth)
+        if (CurrentHealth > StartingHealth)
         {
-            CurrentHealth = _startingHealth;
+            CurrentHealth = StartingHealth;
         }
     }
 

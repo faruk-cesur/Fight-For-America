@@ -8,7 +8,7 @@ public class CurrencyManager : Singleton<CurrencyManager>
 
     [field: SerializeField, BoxGroup("CURRENCY DATA")] public CurrencyData GetCurrencyData { get; private set; }
 
-    public UnityAction OnMoneyChanged;
+    public UnityAction OnMoneyIsChanged;
 
     #endregion
 
@@ -21,15 +21,18 @@ public class CurrencyManager : Singleton<CurrencyManager>
         GetCurrencyData.Money += money;
         SaveCurrency();
         UIManager.Instance.PrintTotalMoneyText();
-        OnMoneyChanged?.Invoke();
+        OnMoneyIsChanged?.Invoke();
     }
 
     public void LoseMoney(int money)
     {
-        GetCurrencyData.Money -= money;
-        SaveCurrency();
-        UIManager.Instance.PrintTotalMoneyText();
-        OnMoneyChanged?.Invoke();
+        if (GetCurrencyData.IsMoneyEnough(money))
+        {
+            GetCurrencyData.Money -= money;
+            SaveCurrency();
+            UIManager.Instance.PrintTotalMoneyText();
+            OnMoneyIsChanged?.Invoke();
+        }
     }
 
     #endregion

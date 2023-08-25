@@ -24,7 +24,7 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
         var closestTarget = _findClosestTarget.ClosestTarget;
 
         PlayShootParticle();
-        AudioManager.Instance.PlayAudio(_shootAudio,0.25f,0,false);
+        AudioManager.Instance.PlayAudio(_shootAudio, 0.25f, 0, false);
 
         if (spawnedBullet.TryGetComponent(out Bullet bullet))
         {

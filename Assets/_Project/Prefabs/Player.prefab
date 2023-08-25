@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 618926871939356537}
   - component: {fileID: 7596292511102112990}
   - component: {fileID: 1973741219896032520}
+  - component: {fileID: 495315837943040507}
   - component: {fileID: 2629833388955044365}
   - component: {fileID: 1234000836984631985}
   - component: {fileID: 7929961398490433981}
@@ -207,6 +208,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 2629833388955044365}
   _healthSlider: {fileID: 694135416343771616}
+--- !u!114 &495315837943040507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3886941265626394761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70379cecd135364f91e73a4bf9387f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 2629833388955044365}
+  _playerAttackData: {fileID: 11400000, guid: a9fd3da6792441248afbf7d64cfa68e9, type: 2}
 --- !u!114 &2629833388955044365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad1b2d8c247f9e4f84db051c1f385a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingHealth: 100
+  StartingHealth: 100
   _sliderSpeed: 0.5
   _healthSlider: {fileID: 694135416343771616}
   _gradientHealthColor:
