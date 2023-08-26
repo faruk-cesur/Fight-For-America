@@ -48,6 +48,15 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
         Rotate();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("BlueCastle"))
+        {
+            Death();
+            // todo damage blue castle
+        }
+    }
+
     public void GetShot(float damage)
     {
         if (_healthSliderCoroutine != null)
