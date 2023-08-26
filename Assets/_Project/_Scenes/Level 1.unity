@@ -2007,11 +2007,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Castle
       objectReference: {fileID: 0}
-    - target: {fileID: 8541798324405926108, guid: 1dc019629edf7ec4ebfddddb85852ea8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8541798324405926109, guid: 1dc019629edf7ec4ebfddddb85852ea8,
         type: 3}
       propertyPath: m_RootOrder
