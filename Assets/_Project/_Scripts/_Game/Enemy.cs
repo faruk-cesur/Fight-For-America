@@ -17,9 +17,10 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
     [field: SerializeField, BoxGroup("IShootable Setup")] public Rigidbody ShootableRigidbody { get; set; }
     [field: SerializeField, BoxGroup("IShootable Setup")] public Slider ShootableSlider { get; set; }
 
-    [field: SerializeField, BoxGroup("Movement Setup")] public bool IsEnemyInteract { get; set; }
+    public bool IsEnemyInteract { get; set; }
     [field: SerializeField, BoxGroup("Movement Setup")] public EnemyMovementData MovementData { get; set; }
     [SerializeField, BoxGroup("Movement Setup")] public PathCreator PathCreatorScript;
+    [SerializeField, BoxGroup("Movement Setup")] public PlayerTrigger PlayerTriggerScript;
     [SerializeField, BoxGroup("Movement Setup")] private Animator _enemyAnimator;
     [SerializeField, BoxGroup("Movement Setup")] private NavMeshAgent _navMeshAgent;
 
@@ -27,7 +28,8 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
     [SerializeField, BoxGroup("Death Setup")] private ParticleSystem _deathParticle;
     [SerializeField, BoxGroup("Death Setup")] private List<GameObject> _moneyList;
 
-    [SerializeField] public PlayerTrigger PlayerTriggerScript;
+    [SerializeField, BoxGroup("Settings")] private int _moneyAmount;
+    
     private bool IsEnemyDeadOrInteract => ShootableHealth.IsDead || IsEnemyInteract;
     private bool _isEnemyKilledByBlueCastle;
     private float _movedDistance;
@@ -153,7 +155,7 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
                 money.transform.DOLocalMove(Vector3.zero, 1f).SetEase(Ease.InBack).OnComplete(() =>
                 {
                     PlayerTriggerScript.PlayMoneyBlastParticle();
-                    CurrencyManager.Instance.EarnMoney(5);
+                    CurrencyManager.Instance.EarnMoney(_moneyAmount);
                     Destroy(money);
                 });
             });
