@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 8253012185546194024}
   - component: {fileID: 8253012185546194027}
   - component: {fileID: 8253012185546194039}
+  - component: {fileID: 6889445224938198996}
   m_Layer: 6
   m_Name: Big Enemy Stickman
   m_TagString: Enemy
@@ -286,6 +287,7 @@ MonoBehaviour:
     type: 2}
   _pathCreator: {fileID: 0}
   _enemyAnimator: {fileID: 2585632928323956151}
+  _navMeshAgent: {fileID: 6889445224938198996}
   _enemyMeshRenderer: {fileID: 4334671781986975652}
   _deathParticle: {fileID: 2071730403908586882}
   _moneyList:
@@ -375,6 +377,28 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!195 &6889445224938198996
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8253012185546194026}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &8253012185731785889
 GameObject:
   m_ObjectHideFlags: 0

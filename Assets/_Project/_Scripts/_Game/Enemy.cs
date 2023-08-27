@@ -5,6 +5,7 @@ using DG.Tweening;
 using PathCreation;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
     [field: SerializeField, BoxGroup("Movement Setup")] public EnemyMovementData MovementData { get; set; }
     [SerializeField, BoxGroup("Movement Setup")] private PathCreator _pathCreator;
     [SerializeField, BoxGroup("Movement Setup")] private Animator _enemyAnimator;
+    [SerializeField, BoxGroup("Movement Setup")] private NavMeshAgent _navMeshAgent;
 
     [SerializeField, BoxGroup("Death Setup")] private SkinnedMeshRenderer _enemyMeshRenderer;
     [SerializeField, BoxGroup("Death Setup")] private ParticleSystem _deathParticle;
@@ -29,6 +31,7 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
     private float _movedDistance;
     private Tween _getShotColorTween;
     private Coroutine _healthSliderCoroutine;
+    private static readonly int IdleAnimation = Animator.StringToHash("Idle");
     private static readonly int DeathAnimation = Animator.StringToHash("Death");
     private static readonly int RunningAnimation = Animator.StringToHash("Running");
 
@@ -39,13 +42,16 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
         DisableHealthSlider();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (IsEnemyDeadOrInteract)
+        {
+            Stop();
             return;
+        }
 
         Move();
-        Rotate();
+        //Rotate();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -134,19 +140,26 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
 
     public void Move()
     {
+        //_movedDistance += MovementData.MovementSpeed * Time.deltaTime;
+        //transform.position = _pathCreator.path.GetPointAtDistance(_movedDistance, EndOfPathInstruction.Stop);
         _enemyAnimator.SetTrigger(RunningAnimation);
-        _movedDistance += MovementData.MovementSpeed * Time.deltaTime;
-        transform.position = _pathCreator.path.GetPointAtDistance(_movedDistance, EndOfPathInstruction.Stop);
+        _navMeshAgent.speed = MovementData.MovementSpeed;
+        _navMeshAgent.SetDestination(_pathCreator.path.GetPoint(_pathCreator.path.NumPoints - 1));
     }
 
     public void Stop()
     {
+        _enemyAnimator.SetTrigger(IdleAnimation);
         IsEnemyInteract = true;
+        if (_navMeshAgent.hasPath)
+        {
+            _navMeshAgent.ResetPath();
+        }
     }
 
     public void Rotate()
     {
-        var pathRotation = _pathCreator.path.GetRotationAtDistance(_movedDistance, EndOfPathInstruction.Stop).eulerAngles;
-        transform.rotation = Quaternion.Euler(0, pathRotation.y, 0);
+        // var pathRotation = _pathCreator.path.GetRotationAtDistance(_movedDistance, EndOfPathInstruction.Stop).eulerAngles;
+        // transform.rotation = Quaternion.Euler(0, pathRotation.y, 0);
     }
 }
