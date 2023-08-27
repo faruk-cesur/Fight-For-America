@@ -21,6 +21,10 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
     public void Attack()
     {
         var closestTarget = _findClosestTarget.ClosestTarget;
+        if (closestTarget is null)
+        {
+            return;
+        }
         if (closestTarget.TryGetComponent(out Enemy enemy))
         {
             if (enemy.IsEnemyInteract)

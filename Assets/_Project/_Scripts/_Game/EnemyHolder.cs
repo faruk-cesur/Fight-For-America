@@ -116,6 +116,10 @@ public class EnemyHolder : MonoBehaviour
 
     private IEnumerator IncreaseCurrentWave()
     {
+        if (CurrentWaveNumber >= AllWaveCount)
+        {
+            yield break;
+        }
         CurrentWaveNumber++;
         SetStartingWaveSlider();
         yield return new WaitForSeconds(_timeForNextWaveStart);

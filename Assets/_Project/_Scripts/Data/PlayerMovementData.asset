@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MovementSpeed>k__BackingField: 250
   <RotateSpeed>k__BackingField: 250
-  <IsCharacterInteract>k__BackingField: 1
+  <IsCharacterInteract>k__BackingField: 0
