@@ -12,9 +12,9 @@ public class StartFightController : MonoBehaviour
     private Tween _startFightSliderTween;
     private bool _isSliderCompleted;
 
-    private void StartFight()
+    public void StartFight()
     {
-        foreach (var enemy in _enemyHolder.EnemyList)
+        foreach (var enemy in _enemyHolder.EnemyWaveList[_enemyHolder.CurrentWaveNumber].EnemiesInWave)
         {
             enemy.IsEnemyInteract = false;
         }
