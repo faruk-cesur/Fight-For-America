@@ -10,7 +10,7 @@ public class PlayerTrigger : MonoBehaviour
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private ParticleSystem _moneyBlastParticle;
     private Coroutine _healthSliderCoroutine;
-    
+
     private void Start()
     {
         StartCoroutine(HealPlayer());
@@ -25,7 +25,7 @@ public class PlayerTrigger : MonoBehaviour
         _healthSlider.gameObject.SetActive(false);
         _healthSliderCoroutine = null;
     }
-    
+
     private IEnumerator HealPlayer()
     {
         while (!_health.IsDead)
@@ -48,6 +48,11 @@ public class PlayerTrigger : MonoBehaviour
         {
             startFightController.IncreaseFightSlider();
         }
+
+        if (other.TryGetComponent(out CaptureEnemyCastle captureEnemyCastle))
+        {
+            captureEnemyCastle.IncreaseCaptureCastleSlider();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -55,6 +60,11 @@ public class PlayerTrigger : MonoBehaviour
         if (other.TryGetComponent(out StartFightController startFightController))
         {
             startFightController.DecreaseFightSlider();
+        }
+
+        if (other.TryGetComponent(out CaptureEnemyCastle captureEnemyCastle))
+        {
+            captureEnemyCastle.DecreaseCaptureCastleSlider();
         }
     }
 

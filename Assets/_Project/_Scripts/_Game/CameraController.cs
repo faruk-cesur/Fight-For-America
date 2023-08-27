@@ -1,23 +1,40 @@
 using System;
+using System.Collections;
 using Cinemachine;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera _firstVirtualCamera;
-    [SerializeField] private CinemachineVirtualCamera _secondVirtualCamera;
+    [SerializeField] private CinemachineVirtualCamera _playerVirtualCamera;
+    [SerializeField] private CinemachineVirtualCamera _captureCastleVirtualCamera;
+    [SerializeField] private CinemachineVirtualCamera _blueCastleDeathVirtualCamera;
     [SerializeField] private CinemachineBrain _cinemachineBrain;
     public bool IsCameraBlendCompleted => _cinemachineBrain.IsBlending && (_cinemachineBrain.ActiveBlend.TimeInBlend + 0.05f >= _cinemachineBrain.ActiveBlend.Duration || !_cinemachineBrain.ActiveBlend.IsValid);
 
-    public void EnableFirstVirtualCamera()
+    public void SetPlayerVirtualCamera()
     {
-        _firstVirtualCamera.Priority = 1;
-        _secondVirtualCamera.Priority = 0;
+        _playerVirtualCamera.Priority = 1;
+        _captureCastleVirtualCamera.Priority = 0;
+        _blueCastleDeathVirtualCamera.Priority = 0;
     }
 
-    public void EnableSecondVirtualCamera()
+    public IEnumerator SetCaptureCastleVirtualCamera()
     {
-        _firstVirtualCamera.Priority = 0;
-        _secondVirtualCamera.Priority = 1;
+        _playerVirtualCamera.Priority = 0;
+        _captureCastleVirtualCamera.Priority = 1;
+        _blueCastleDeathVirtualCamera.Priority = 0;
+
+        yield return new WaitForSeconds(3f);
+
+        SetPlayerVirtualCamera();
+    }
+
+    public IEnumerator SetBlueCastleDeathVirtualCamera()
+    {
+        yield return new WaitForSeconds(2f);
+
+        _playerVirtualCamera.Priority = 0;
+        _captureCastleVirtualCamera.Priority = 0;
+        _blueCastleDeathVirtualCamera.Priority = 1;
     }
 }

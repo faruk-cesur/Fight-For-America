@@ -23,7 +23,7 @@ public class StartFightController : MonoBehaviour
     public void IncreaseFightSlider()
     {
         _startFightSliderTween.Kill();
-        _startFightSliderTween = _startFightSlider.DOValue(1f, _startFightSliderDuration).OnComplete(()=>
+        _startFightSliderTween = _startFightSlider.DOValue(1f, _startFightSliderDuration).OnComplete(() =>
         {
             _isSliderCompleted = true;
             StartFight();

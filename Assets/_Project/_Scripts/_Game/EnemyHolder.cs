@@ -18,6 +18,8 @@ public class EnemyHolder : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentWaveText;
     [SerializeField] private PathCreator _pathCreator;
     [SerializeField] private StartFightController _startFightController;
+    [SerializeField] private CaptureEnemyCastle _captureEnemyCastle;
+    [SerializeField] private CameraController _cameraController;
     [ReadOnly] public int CurrentWaveNumber;
     [ReadOnly] public int AllWaveCount;
     private int _killedEnemyCountInCurrentWave;
@@ -68,7 +70,9 @@ public class EnemyHolder : MonoBehaviour
 
         if (EnemyList.Count == 0)
         {
-            //todo All enemies are dead. Go and get the castle.
+            _startFightController.gameObject.SetActive(false);
+            _captureEnemyCastle.gameObject.SetActive(true);
+            StartCoroutine(_cameraController.SetCaptureCastleVirtualCamera());
         }
     }
 
@@ -117,7 +121,7 @@ public class EnemyHolder : MonoBehaviour
         yield return new WaitForSeconds(_timeForNextWaveStart);
         _startFightController.StartFight();
     }
-    
+
     public void StopAllEnemies()
     {
         foreach (var enemy in EnemyList)
