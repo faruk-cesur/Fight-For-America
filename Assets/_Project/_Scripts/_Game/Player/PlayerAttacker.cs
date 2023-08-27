@@ -20,15 +20,17 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
 
     public void Attack()
     {
-        var spawnedBullet = SpawnBullet();
         var closestTarget = _findClosestTarget.ClosestTarget;
-
-        PlayShootParticle();
-        AudioManager.Instance.PlayAudio(_shootAudio, 0.25f, 0, false);
-
-        if (spawnedBullet.TryGetComponent(out Bullet bullet))
+        if (closestTarget.TryGetComponent(out Enemy enemy))
         {
-            if (closestTarget.TryGetComponent(out Enemy enemy))
+            if (enemy.IsEnemyInteract)
+                return;
+
+            AudioManager.Instance.PlayAudio(_shootAudio, 0.25f, 0, false);
+            PlayShootParticle();
+            var spawnedBullet = SpawnBullet();
+
+            if (spawnedBullet.TryGetComponent(out Bullet bullet))
             {
                 bullet.TargetTransform = closestTarget.transform;
                 bullet.TargetEnemy = enemy;
