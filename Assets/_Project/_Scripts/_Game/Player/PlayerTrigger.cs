@@ -8,6 +8,7 @@ public class PlayerTrigger : MonoBehaviour
 {
     [SerializeField] private Health _health;
     [SerializeField] private Slider _healthSlider;
+    [SerializeField] private ParticleSystem _moneyBlastParticle;
     private Coroutine _healthSliderCoroutine;
 
 
@@ -58,5 +59,10 @@ public class PlayerTrigger : MonoBehaviour
         }
 
         _healthSliderCoroutine = StartCoroutine(SetHealthSliderCoroutine());
+    }
+
+    public void PlayMoneyBlastParticle()
+    {
+        _moneyBlastParticle.Play();
     }
 }
