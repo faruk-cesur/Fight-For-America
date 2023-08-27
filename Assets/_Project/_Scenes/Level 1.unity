@@ -2850,7 +2850,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296395906}
-  m_LocalRotation: {x: 0.27984735, y: 0.124650195, z: -0.036672216, w: 0.95121133}
+  m_LocalRotation: {x: 0.27984735, y: 0.12465018, z: -0.036672205, w: 0.95121133}
   m_LocalPosition: {x: -4, y: 10, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9147,8 +9147,8 @@ MonoBehaviour:
   _currentWaveText: {fileID: 500920792}
   _pathCreator: {fileID: 1646107178}
   _startFightController: {fileID: 168057986532292343}
-  _captureEnemyCastle: {fileID: 0}
-  _cameraController: {fileID: 0}
+  _captureEnemyCastle: {fileID: 168057986532292344}
+  _cameraController: {fileID: 1387363139}
   CurrentWaveNumber: 0
   AllWaveCount: 0
 --- !u!1001 &1107385193
@@ -17238,14 +17238,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 154598111}
     m_Modifications:
-    - target: {fileID: 771702765, guid: 7dcc2e766e493c848a0661b34f15b5a6, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 771702765, guid: 7dcc2e766e493c848a0661b34f15b5a6, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 168057985814359938, guid: 7dcc2e766e493c848a0661b34f15b5a6,
         type: 3}
       propertyPath: m_Name
@@ -17597,6 +17589,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6992820006898406766, guid: 1dc019629edf7ec4ebfddddb85852ea8,
+        type: 3}
+      propertyPath: _cameraController
+      value: 
+      objectReference: {fileID: 1387363139}
     - target: {fileID: 8541798324405926108, guid: 1dc019629edf7ec4ebfddddb85852ea8,
         type: 3}
       propertyPath: m_Name

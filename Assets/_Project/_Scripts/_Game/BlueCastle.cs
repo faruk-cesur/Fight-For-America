@@ -8,7 +8,7 @@ public class BlueCastle : MonoBehaviour
 {
     public Health BlueCastleHealth;
     public UnityAction OnBlueCastleDeath;
-    public CameraController VirtualCameraController;
+    [SerializeField] private CameraController _cameraController;
 
     private void Start()
     {
@@ -23,6 +23,6 @@ public class BlueCastle : MonoBehaviour
 
     private void SetBlueCastleDeathVirtualCamera()
     {
-        StartCoroutine(VirtualCameraController.SetBlueCastleDeathVirtualCamera());
+        StartCoroutine(_cameraController.SetBlueCastleDeathVirtualCamera());
     }
 }

@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
 
     [SerializeField] public PlayerTrigger PlayerTriggerScript;
     private bool IsEnemyDeadOrInteract => ShootableHealth.IsDead || IsEnemyInteract;
+    private bool _isEnemyKilledByBlueCastle;
     private float _movedDistance;
     private Tween _getShotColorTween;
     private Coroutine _healthSliderCoroutine;
@@ -39,8 +40,9 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
     private void Start()
     {
         Stop();
-        ShootableHealth.OnDeath += Death;
         DisableHealthSlider();
+        ShootableHealth.OnDeath += Death;
+        ShootableHealth.OnDeath += DeathOnTriggerBlueCastle;
     }
 
     private void FixedUpdate()
@@ -59,8 +61,9 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
     {
         if (other.TryGetComponent(out BlueCastle blueCastle))
         {
+            _isEnemyKilledByBlueCastle = true;
             blueCastle.BlueCastleHealth.Damage(ShootableHealth.CurrentHealth);
-            DeathOnTriggerBlueCastle();
+            ShootableHealth.Damage(ShootableHealth.StartingHealth);
         }
     }
 
@@ -82,6 +85,11 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
 
     public void Death()
     {
+        if (_isEnemyKilledByBlueCastle)
+        {
+            return;
+        }
+
         Stop();
         _enemyAnimator.SetTrigger(DeathAnimation);
         _deathParticle.Play();
@@ -94,10 +102,13 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
 
     private void DeathOnTriggerBlueCastle()
     {
-        _deathParticle.transform.SetParent(null);
-        _deathParticle.Play();
-        Destroy(_deathParticle.gameObject, 2);
-        Destroy(gameObject);
+        if (_isEnemyKilledByBlueCastle)
+        {
+            _deathParticle.transform.SetParent(null);
+            _deathParticle.Play();
+            Destroy(_deathParticle.gameObject, 2);
+            Destroy(gameObject, 0.1f);
+        }
     }
 
     private IEnumerator DestroyAfterDeath()
