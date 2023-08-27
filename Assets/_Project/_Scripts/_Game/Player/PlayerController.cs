@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour, IMovable<PlayerMovementData>
     [SerializeField] private PlayerAttacker _playerAttacker;
     [SerializeField] private FloatingJoystick _joystick;
     [SerializeField] private Health _health;
-    [SerializeField] public Rigidbody _rigidbody;
+    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private EnemyHolder _enemyHolder;
+    [SerializeField] private BlueCastle _blueCastle;
     [SerializeField] public Transform PlayerVisual;
 
     private void Start()
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour, IMovable<PlayerMovementData>
         _playerStates.RunningShootState += _playerAttacker.RunningShootState;
         _playerStates.StandingShootState += _playerAttacker.StandingShootState;
         _health.OnDeath += DeathState;
+        _blueCastle.OnBlueCastleDeath += DeathState;
     }
 
     public void Move()
@@ -76,9 +79,11 @@ public class PlayerController : MonoBehaviour, IMovable<PlayerMovementData>
 
     private void DeathState()
     {
+        Stop();
         MovementData.IsCharacterInteract = true;
         _playerStates.CurrentPlayerState = PlayerStates.PlayerState.Death;
         _playerAnimator.DeathAnimation();
+        _enemyHolder.StopAllEnemies();
         GameManager.Instance.Lose(0);
     }
 

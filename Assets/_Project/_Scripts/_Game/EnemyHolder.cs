@@ -20,6 +20,7 @@ public class EnemyHolder : MonoBehaviour
     [SerializeField] private StartFightController _startFightController;
     [ReadOnly] public int CurrentWaveNumber;
     [ReadOnly] public int AllWaveCount;
+    private int _killedEnemyCountInCurrentWave;
 
     private void Start()
     {
@@ -52,9 +53,9 @@ public class EnemyHolder : MonoBehaviour
     {
         foreach (var enemy in EnemyList)
         {
+            enemy.ShootableHealth.OnDeath += IncreaseWaveSlider;
             enemy.ShootableHealth.OnDeath += () => RemoveEnemyFromList(enemy);
             enemy.ShootableHealth.OnDeath += () => RemoveEnemyFromWaveList(enemy);
-            enemy.ShootableHealth.OnDeath += IncreaseWaveSlider;
         }
     }
 
@@ -87,7 +88,8 @@ public class EnemyHolder : MonoBehaviour
 
     private void IncreaseWaveSlider()
     {
-        _enemyWaveSlider.DOValue(EnemyWaveList[CurrentWaveNumber].EnemiesInWave.Count, 0.25f);
+        _killedEnemyCountInCurrentWave++;
+        _enemyWaveSlider.DOValue(_killedEnemyCountInCurrentWave, 0.25f);
     }
 
     private void SetStartingWaveCount()
@@ -98,8 +100,9 @@ public class EnemyHolder : MonoBehaviour
 
     private void SetStartingWaveSlider()
     {
+        _killedEnemyCountInCurrentWave = 0;
         _enemyWaveSlider.maxValue = EnemyWaveList[CurrentWaveNumber].EnemiesInWave.Count;
-        _enemyWaveSlider.value = 0;
+        _enemyWaveSlider.DOValue(_killedEnemyCountInCurrentWave, 0.25f);
     }
 
     private void PrintWaveCountText()
@@ -110,7 +113,16 @@ public class EnemyHolder : MonoBehaviour
     private IEnumerator IncreaseCurrentWave()
     {
         CurrentWaveNumber++;
+        SetStartingWaveSlider();
         yield return new WaitForSeconds(_timeForNextWaveStart);
         _startFightController.StartFight();
+    }
+    
+    public void StopAllEnemies()
+    {
+        foreach (var enemy in EnemyList)
+        {
+            enemy.Stop();
+        }
     }
 }

@@ -142,7 +142,7 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
                 money.transform.DOLocalMove(Vector3.zero, 1f).SetEase(Ease.InBack).OnComplete(() =>
                 {
                     PlayerTriggerScript.PlayMoneyBlastParticle();
-                    CurrencyManager.Instance.EarnMoney(1);
+                    CurrencyManager.Instance.EarnMoney(5);
                     Destroy(money);
                 });
             });

@@ -5950,16 +5950,16 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 424444343}
   - {fileID: 924983577}
+  - {fileID: 1417686761}
+  - {fileID: 864963964}
+  - {fileID: 562073239}
+  - {fileID: 424444343}
+  - {fileID: 672377782}
+  - {fileID: 1988822470}
   - {fileID: 1980129079}
   - {fileID: 1406640101}
   - {fileID: 116725437}
-  - {fileID: 864963964}
-  - {fileID: 562073239}
-  - {fileID: 1417686761}
-  - {fileID: 672377782}
-  - {fileID: 1988822470}
   m_Father: {fileID: 1089934068}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14908,6 +14908,16 @@ PrefabInstance:
       objectReference: {fileID: 2108299656}
     - target: {fileID: 5559982565227651159, guid: e612341783c83bd42a3c5b7a57223bac,
         type: 3}
+      propertyPath: _blueCastle
+      value: 
+      objectReference: {fileID: 8541798323808575579}
+    - target: {fileID: 5559982565227651159, guid: e612341783c83bd42a3c5b7a57223bac,
+        type: 3}
+      propertyPath: _enemyHolder
+      value: 
+      objectReference: {fileID: 1089934069}
+    - target: {fileID: 5559982565227651159, guid: e612341783c83bd42a3c5b7a57223bac,
+        type: 3}
       propertyPath: EnemyWaveList.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -15004,6 +15014,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dc019629edf7ec4ebfddddb85852ea8, type: 3}
+--- !u!114 &8541798323808575579 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6992820006898406766, guid: 1dc019629edf7ec4ebfddddb85852ea8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8541798323808575578}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88291d618d60e4a46b672ed262679380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8725924012367896337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6869994398032055820, guid: 14febc533699bf745afc83e7518e5f90,

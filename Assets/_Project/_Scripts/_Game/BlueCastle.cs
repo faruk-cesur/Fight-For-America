@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BlueCastle : MonoBehaviour
 {
     public Health BlueCastleHealth;
-
+    public UnityAction OnBlueCastleDeath;
+    
     private void Start()
     {
         BlueCastleHealth.OnDeath += LoseOnBlueCastleDeath;
@@ -14,6 +16,6 @@ public class BlueCastle : MonoBehaviour
 
     private void LoseOnBlueCastleDeath()
     {
-        GameManager.Instance.Lose(0);
+        OnBlueCastleDeath?.Invoke();
     }
 }

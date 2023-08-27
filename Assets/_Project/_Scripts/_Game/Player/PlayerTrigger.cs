@@ -39,9 +39,9 @@ public class PlayerTrigger : MonoBehaviour
     {
         if (other.TryGetComponent(out Enemy enemy))
         {
-            enemy.Death();
             _health.Damage(enemy.ShootableHealth.CurrentHealth);
             DisplayHealthSlider();
+            enemy.ShootableHealth.Damage(enemy.ShootableHealth.StartingHealth);
         }
 
         if (other.TryGetComponent(out StartFightController startFightController))
