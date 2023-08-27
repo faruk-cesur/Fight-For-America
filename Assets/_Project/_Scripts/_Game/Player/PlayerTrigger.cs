@@ -10,8 +10,7 @@ public class PlayerTrigger : MonoBehaviour
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private ParticleSystem _moneyBlastParticle;
     private Coroutine _healthSliderCoroutine;
-
-
+    
     private void Start()
     {
         StartCoroutine(HealPlayer());
@@ -44,8 +43,21 @@ public class PlayerTrigger : MonoBehaviour
             _health.Damage(enemy.ShootableHealth.CurrentHealth);
             DisplayHealthSlider();
         }
+
+        if (other.TryGetComponent(out StartFightController startFightController))
+        {
+            startFightController.IncreaseFightSlider();
+        }
     }
-    
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out StartFightController startFightController))
+        {
+            startFightController.DecreaseFightSlider();
+        }
+    }
+
     private void DisableHealthSlider()
     {
         _healthSlider.gameObject.SetActive(false);
