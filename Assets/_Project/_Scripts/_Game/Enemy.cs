@@ -6,6 +6,7 @@ using PathCreation;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
@@ -18,7 +19,7 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
 
     [field: SerializeField, BoxGroup("Movement Setup")] public bool IsEnemyInteract { get; set; }
     [field: SerializeField, BoxGroup("Movement Setup")] public EnemyMovementData MovementData { get; set; }
-    [SerializeField, BoxGroup("Movement Setup")] private PathCreator _pathCreator;
+    [SerializeField, BoxGroup("Movement Setup")] public PathCreator PathCreatorScript;
     [SerializeField, BoxGroup("Movement Setup")] private Animator _enemyAnimator;
     [SerializeField, BoxGroup("Movement Setup")] private NavMeshAgent _navMeshAgent;
 
@@ -26,11 +27,12 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
     [SerializeField, BoxGroup("Death Setup")] private ParticleSystem _deathParticle;
     [SerializeField, BoxGroup("Death Setup")] private List<GameObject> _moneyList;
 
-    [SerializeField] private Transform _playerTransform;
+    [SerializeField] public PlayerTrigger PlayerTriggerScript;
     private bool IsEnemyDeadOrInteract => ShootableHealth.IsDead || IsEnemyInteract;
     private float _movedDistance;
     private Tween _getShotColorTween;
     private Coroutine _healthSliderCoroutine;
+    public UnityAction OnEnemyDeath;
     private static readonly int IdleAnimation = Animator.StringToHash("Idle");
     private static readonly int DeathAnimation = Animator.StringToHash("Death");
     private static readonly int RunningAnimation = Animator.StringToHash("Running");
@@ -80,6 +82,7 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
 
     public void Death()
     {
+        OnEnemyDeath?.Invoke();
         Stop();
         _enemyAnimator.SetTrigger(DeathAnimation);
         _deathParticle.Play();
@@ -128,9 +131,10 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
             money.transform.DORotate(new Vector3(0f, 360f, 0f), 1f, RotateMode.FastBeyond360).SetLoops(2, LoopType.Restart).SetEase(Ease.Linear);
             money.transform.DOMoveY(2f, 0.5f).SetLoops(4, LoopType.Yoyo).OnComplete(() =>
             {
-                money.transform.SetParent(_playerTransform);
+                money.transform.SetParent(PlayerTriggerScript.transform);
                 money.transform.DOLocalMove(Vector3.zero, 1f).SetEase(Ease.InBack).OnComplete(() =>
                 {
+                    PlayerTriggerScript.PlayMoneyBlastParticle();
                     CurrencyManager.Instance.EarnMoney(1);
                     Destroy(money);
                 });
@@ -144,7 +148,7 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
         //transform.position = _pathCreator.path.GetPointAtDistance(_movedDistance, EndOfPathInstruction.Stop);
         _enemyAnimator.SetTrigger(RunningAnimation);
         _navMeshAgent.speed = MovementData.MovementSpeed;
-        _navMeshAgent.SetDestination(_pathCreator.path.GetPoint(_pathCreator.path.NumPoints - 1));
+        _navMeshAgent.SetDestination(PathCreatorScript.path.GetPoint(PathCreatorScript.path.NumPoints - 1));
     }
 
     public void Stop()
