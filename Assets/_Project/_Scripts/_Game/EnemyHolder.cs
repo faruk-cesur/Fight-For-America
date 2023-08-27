@@ -38,7 +38,7 @@ public class EnemyHolder : MonoBehaviour
     {
         foreach (var enemy in EnemyList)
         {
-            enemy.OnEnemyDeath += () => RemoveEnemyFromList(enemy);
+            enemy.ShootableHealth.OnDeath += () => RemoveEnemyFromList(enemy);
         }
     }
 

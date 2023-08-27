@@ -32,7 +32,6 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
     private float _movedDistance;
     private Tween _getShotColorTween;
     private Coroutine _healthSliderCoroutine;
-    public UnityAction OnEnemyDeath;
     private static readonly int IdleAnimation = Animator.StringToHash("Idle");
     private static readonly int DeathAnimation = Animator.StringToHash("Death");
     private static readonly int RunningAnimation = Animator.StringToHash("Running");
@@ -82,7 +81,6 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
 
     public void Death()
     {
-        OnEnemyDeath?.Invoke();
         Stop();
         _enemyAnimator.SetTrigger(DeathAnimation);
         _deathParticle.Play();
