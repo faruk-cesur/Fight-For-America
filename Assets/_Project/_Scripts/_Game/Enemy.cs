@@ -57,9 +57,10 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("BlueCastle"))
+        if (other.TryGetComponent(out BlueCastle blueCastle))
         {
-            Death();
+            blueCastle.BlueCastleHealth.Damage(ShootableHealth.CurrentHealth);
+            DeathOnTriggerBlueCastle();
         }
     }
 
@@ -89,6 +90,14 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
         DropMoneyFromEnemy();
         DisableHealthSlider();
         StartCoroutine(DestroyAfterDeath());
+    }
+
+    private void DeathOnTriggerBlueCastle()
+    {
+        _deathParticle.transform.SetParent(null);
+        _deathParticle.Play();
+        Destroy(_deathParticle.gameObject, 2);
+        Destroy(gameObject);
     }
 
     private IEnumerator DestroyAfterDeath()

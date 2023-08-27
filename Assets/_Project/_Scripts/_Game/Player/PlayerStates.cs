@@ -26,6 +26,9 @@ public class PlayerStates : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.CurrentGameState == GameState.Lose || GameManager.Instance.CurrentGameState == GameState.Win)
+            return;
+
         StateMachine();
     }
 
