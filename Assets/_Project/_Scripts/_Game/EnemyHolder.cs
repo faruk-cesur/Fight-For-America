@@ -26,21 +26,12 @@ public class EnemyHolder : MonoBehaviour
 
     private void Start()
     {
-        //CreateEnemyList();
         DefineScriptsOnEnemy();
         SubscribeOnEnemyDeathEvent();
         SetStartingWaveCount();
         PrintWaveCountText();
         SetStartingWaveSlider();
     }
-
-    // private void CreateEnemyList()
-    // {
-    //     for (int i = 0; i < transform.childCount; i++)
-    //     {
-    //         EnemyList.Add(transform.GetChild(i).GetComponent<Enemy>());
-    //     }
-    // }
 
     private void DefineScriptsOnEnemy()
     {
@@ -93,7 +84,7 @@ public class EnemyHolder : MonoBehaviour
     private void IncreaseWaveSlider()
     {
         _killedEnemyCountInCurrentWave++;
-        _enemyWaveSlider.DOValue(_killedEnemyCountInCurrentWave, 0.25f);
+        _enemyWaveSlider.DOValue(_killedEnemyCountInCurrentWave, 0.5f);
     }
 
     private void SetStartingWaveCount()
@@ -106,7 +97,7 @@ public class EnemyHolder : MonoBehaviour
     {
         _killedEnemyCountInCurrentWave = 0;
         _enemyWaveSlider.maxValue = EnemyWaveList[CurrentWaveNumber].EnemiesInWave.Count;
-        _enemyWaveSlider.DOValue(_killedEnemyCountInCurrentWave, 0.25f);
+        _enemyWaveSlider.DOValue(_killedEnemyCountInCurrentWave, 0.5f);
     }
 
     private void PrintWaveCountText()
@@ -116,10 +107,11 @@ public class EnemyHolder : MonoBehaviour
 
     private IEnumerator IncreaseCurrentWave()
     {
-        if (CurrentWaveNumber >= AllWaveCount)
+        if (1 + CurrentWaveNumber >= AllWaveCount)
         {
             yield break;
         }
+
         CurrentWaveNumber++;
         SetStartingWaveSlider();
         yield return new WaitForSeconds(_timeForNextWaveStart);
