@@ -53,7 +53,6 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
         if (other.CompareTag("BlueCastle"))
         {
             Death();
-            // todo damage blue castle
         }
     }
 
