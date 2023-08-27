@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290ae7b20bfb92b4091d6da30fd43dea, type: 3}
   m_Name: PlayerMovementData
   m_EditorClassIdentifier: 
-  <MovementSpeed>k__BackingField: 250
-  <RotateSpeed>k__BackingField: 250
-  <IsCharacterInteract>k__BackingField: 0
+  <MovementSpeed>k__BackingField: 200
+  <RotateSpeed>k__BackingField: 200
+  <IsCharacterInteract>k__BackingField: 1

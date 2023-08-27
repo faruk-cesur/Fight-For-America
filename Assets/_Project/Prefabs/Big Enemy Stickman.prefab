@@ -282,10 +282,10 @@ MonoBehaviour:
   <ShootableCollider>k__BackingField: {fileID: 8253012185546194039}
   <ShootableRigidbody>k__BackingField: {fileID: 8253012185546194027}
   <ShootableSlider>k__BackingField: {fileID: 5232089697578012665}
-  <IsEnemyInteract>k__BackingField: 0
   <MovementData>k__BackingField: {fileID: 11400000, guid: 81780b7bbf91da24493921c479cbd31b,
     type: 2}
-  _pathCreator: {fileID: 0}
+  PathCreatorScript: {fileID: 0}
+  PlayerTriggerScript: {fileID: 0}
   _enemyAnimator: {fileID: 2585632928323956151}
   _navMeshAgent: {fileID: 6889445224938198996}
   _enemyMeshRenderer: {fileID: 4334671781986975652}
@@ -301,7 +301,7 @@ MonoBehaviour:
   - {fileID: 8253012184756801024}
   - {fileID: 8253012185350578415}
   - {fileID: 4792222466807609183}
-  _playerTransform: {fileID: 0}
+  _moneyAmount: 15
 --- !u!114 &8253012185546194024
 MonoBehaviour:
   m_ObjectHideFlags: 0
