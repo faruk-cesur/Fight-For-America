@@ -16,6 +16,7 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private ParticleSystem _shootParticle;
     [SerializeField] private AudioClip _shootAudio;
+    [SerializeField] private ObjectPool _bulletObjectPool;
     private float _currentFireRate = 0;
 
     public void Attack()
@@ -25,6 +26,7 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
         {
             return;
         }
+
         if (closestTarget.TryGetComponent(out Enemy enemy))
         {
             if (enemy.IsEnemyInteract)
@@ -32,13 +34,16 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
 
             AudioManager.Instance.PlayAudio(_shootAudio, 0.25f, 0, false);
             PlayShootParticle();
-            var spawnedBullet = SpawnBullet();
+
+            var spawnedBullet = _bulletObjectPool.GetPooledObject(0);
+            spawnedBullet.transform.position = _bulletSpawnPosition.position;
 
             if (spawnedBullet.TryGetComponent(out Bullet bullet))
             {
                 bullet.TargetTransform = closestTarget.transform;
                 bullet.TargetEnemy = enemy;
                 bullet.BulletDamage = AttackerData.Damage;
+                bullet.BulletObjectPool = _bulletObjectPool;
             }
         }
     }
@@ -78,12 +83,6 @@ public class PlayerAttacker : MonoBehaviour, IAttacker<PlayerAttackData>
     private void DecreaseCurrentFireRate()
     {
         _currentFireRate -= Time.deltaTime;
-    }
-
-    private Transform SpawnBullet()
-    {
-        var bullet = Instantiate(_bulletPrefab, _bulletSpawnPosition.position, Quaternion.identity);
-        return bullet.transform;
     }
 
     public void RunningShootState()

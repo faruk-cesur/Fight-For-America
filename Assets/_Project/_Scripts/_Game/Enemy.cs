@@ -95,6 +95,7 @@ public class Enemy : MonoBehaviour, IShootable, IMovable<EnemyMovementData>
         Stop();
         _enemyAnimator.SetTrigger(DeathAnimation);
         _deathParticle.Play();
+        _navMeshAgent.enabled = false;
         DisableEnemyCollider();
         TurnEnemyColorBlack();
         DropMoneyFromEnemy();

@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
     public Transform TargetTransform { get; set; }
     public Enemy TargetEnemy { get; set; }
     public float BulletDamage { get; set; }
+    public ObjectPool BulletObjectPool;
     [SerializeField] private float _bulletSpeed;
 
     private void Update()
@@ -21,7 +22,7 @@ public class Bullet : MonoBehaviour
         if (IsBulletReachedTarget())
         {
             TargetEnemy.GetShot(BulletDamage);
-            Destroy(gameObject);
+            BulletObjectPool.SetPooledObject(gameObject,0);
         }
     }
 

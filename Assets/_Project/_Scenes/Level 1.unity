@@ -1390,8 +1390,8 @@ Transform:
   - {fileID: 1646107179}
   - {fileID: 1020022449}
   - {fileID: 1917575359}
-  - {fileID: 1969436457}
   - {fileID: 483788596}
+  - {fileID: 1969436457}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2162,6 +2162,7 @@ Transform:
   - {fileID: 785209717}
   - {fileID: 614996521}
   - {fileID: 1081034588}
+  - {fileID: 1611729264}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3602,7 +3603,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296395906}
-  m_LocalRotation: {x: 0.27984735, y: 0.12465024, z: -0.036672227, w: 0.95121133}
+  m_LocalRotation: {x: 0.27984735, y: 0.12465018, z: -0.036672205, w: 0.95121133}
   m_LocalPosition: {x: -4, y: 10, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6442,7 +6443,7 @@ Transform:
   - {fileID: 1943873619}
   - {fileID: 945462783}
   m_Father: {fileID: 73344681}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &490244189
 PrefabInstance:
@@ -16756,6 +16757,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2f8793da63ba949a5e05ea7576924a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1611729263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611729264}
+  - component: {fileID: 1611729265}
+  m_Layer: 0
+  m_Name: Bullets Object Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1611729264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611729263}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 154598111}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1611729265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611729263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36555d426b2e2d4429e67827ed8c59a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoolObjectsParent: {fileID: 1611729264}
+  Pools:
+  - ObjectPrefab: {fileID: 2518334794803325682, guid: c68b7edc41e2e0f4b9afbbdc1164f562,
+      type: 3}
+    PoolSize: 70
 --- !u!1001 &1626488667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23658,6 +23708,11 @@ PrefabInstance:
       propertyPath: EnemyWaveList.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7596292511102112990, guid: e612341783c83bd42a3c5b7a57223bac,
+        type: 3}
+      propertyPath: _bulletObjectPool
+      value: 
+      objectReference: {fileID: 1611729265}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e612341783c83bd42a3c5b7a57223bac, type: 3}
 --- !u!114 &3886941265223720705 stripped
